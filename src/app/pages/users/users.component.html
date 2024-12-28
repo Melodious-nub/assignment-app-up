@@ -44,7 +44,7 @@
                                         <th style="width: 80px; min-width: 80px; font-weight: bold;">Action</th>
                                     </tr><!-- end tr -->
                                 </thead><!-- end thead -->
-                                <tbody>
+                                <tbody *ngIf="filteredUsers.length > 0; else noDataTemplate">
                                     <tr *ngFor="let user of filteredUsers; let i = index">
                                         <th scope="row">{{ i + 1 }}</th>
                                         <td>
@@ -69,6 +69,14 @@
                                         </td>
                                     </tr><!-- end tr -->
                                 </tbody><!-- end tbody -->
+
+                                <ng-template #noDataTemplate>
+                                    <tr>
+                                        <td colspan="5" class="text-center text-danger pt-4">
+                                            <strong>No data found</strong>
+                                        </td>
+                                    </tr>
+                                </ng-template>
                             </table><!-- end table -->
                         </div><!-- end table responsive -->
 
