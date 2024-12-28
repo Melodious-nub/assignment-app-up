@@ -1,0 +1,84 @@
+<div class="vertical-menu">
+
+    <!-- LOGO -->
+    <div class="navbar-brand-box">
+        <a class="logo logo-dark">
+            <span class="logo-sm">
+                <img src="images/logo-sm.png" alt="" height="22">
+            </span>
+            <span class="logo-lg">
+                <img src="images/logo-dark.png" alt="" height="22">
+            </span>
+        </a>
+
+        <a class="logo logo-light">
+            <span class="logo-lg">
+                <img src="images/logo-light.png" alt="" height="22">
+            </span>
+            <span class="logo-sm">
+                <img src="images/logo-sm-light.png" alt="" height="22">
+            </span>
+        </a>
+    </div>
+
+    <button type="button" class="btn btn-sm px-3 font-size-16 header-item vertical-menu-btn">
+        <i class="fa fa-fw fa-bars"></i>
+    </button>
+
+    <div class="sidebar-menu-scroll">
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+            <ul class="metismenu list-unstyled" id="side-menu">
+                <!-- <li class="menu-title" data-key="t-dashboards">Dashboards</li> -->
+
+                <li>
+                    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <i class='bx bxs-dashboard me-2' ></i>
+                        <span class="menu-item" data-key="t-sales">Dashboards</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a routerLink="users" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <i class='bx bxs-group me-2' ></i>
+                        <span class="menu-item" data-key="t-user-list">Users</span>
+                    </a>
+                </li>
+
+                <!-- <li class="menu-title" data-key="t-applications">Applications</li> -->
+
+                <li>
+                    <a>
+                        <i class='bx bxs-package me-2' ></i>
+                        <span class="menu-item" data-key="t-calendar">Products</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a>
+                        <i class='bx bxs-purchase-tag-alt me-2' ></i>
+                        <span class="menu-item" data-key="t-chat">Tags</span>
+                        <!-- <span class="badge rounded-pill badge-danger-subtle" data-key="t-hot">Hot</span> -->
+                    </a>
+                </li>
+
+                <li>
+                    <a>
+                        <i class='bx bxs-book-content me-2' ></i>
+                        <span class="menu-item" data-key="t-kanban">Catalogs</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a>
+                        <i class='bx bx-sitemap me-2' ></i>
+                        <span class="menu-item" data-key="t-filemanager">Product Aliases</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>

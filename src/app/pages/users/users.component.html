@@ -1,0 +1,154 @@
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <h5 class="card-title">Manage Users</h5>
+                                </div>
+                            </div><!-- end col -->
+
+                            <div class="col-md-6">
+                                <div class="d-flex flex-wrap align-items-start justify-content-md-end mt-2 mt-md-0 gap-2 mb-3">
+                                    <div>
+                                        <ul class="nav nav-pills">
+                                            <li class="nav-item me-2">
+                                                <select class="form-select" [(ngModel)]="filterStatus" (change)="applyFilter()">
+                                                    <option value="all">All</option>
+                                                    <option value="inactive">Inactive</option>
+                                                    <option value="active">Active</option>
+                                                </select>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-light" (click)="openAddModal()" data-bs-toggle="modal" data-bs-target="#addContactModal">
+                                            <i class="uil uil-plus me-1"></i> Add New
+                                        </button>
+                                    </div>
+                                </div>
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+
+                        <div class="table-responsive">
+                            <table class="table align-middle table-nowrap table-check">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="font-weight: bold;">#</th>
+                                        <th scope="col" style="font-weight: bold;">Name</th>
+                                        <th scope="col" style="font-weight: bold;">Email</th>
+                                        <th scope="col" style="font-weight: bold;">Status</th>
+                                        <th style="width: 80px; min-width: 80px; font-weight: bold;">Action</th>
+                                    </tr><!-- end tr -->
+                                </thead><!-- end thead -->
+                                <tbody>
+                                    <tr *ngFor="let user of filteredUsers; let i = index">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td>
+                                            <a class="text-body fw-medium">{{ user.name }}</a>
+                                        </td>
+                                        <td>{{ user.email }}</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                @if(user.status === 'active') {
+                                                    <a class="badge badge-success-subtle font-size-11" style="font-weight: bold;">Active</a>
+                                                } @else {
+                                                    <a class="badge badge-danger-subtle font-size-11" style="font-weight: bold;">Inactive</a>
+                                                }
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="modal" data-bs-target="#addContactModalEdit" (click)="openEditModal(user)">
+                                                    <i class="uil uil-edit"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr><!-- end tr -->
+                                </tbody><!-- end tbody -->
+                            </table><!-- end table -->
+                        </div><!-- end table responsive -->
+
+                    </div><!-- end card body -->
+                </div><!-- end card -->
+            </div><!-- end col -->
+        </div><!-- end row -->
+
+    </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->
+
+<!-- Add Contact Modal -->
+<div class="modal fade" id="addContactModal" tabindex="-1" aria-labelledby="addContactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addContactModalLabel">Add Contact</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+                    <div class="mb-3">
+                        <label for="addcontact-name-input" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="addcontact-name-input" formControlName="name" placeholder="Enter Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addcontact-email-input" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="addcontact-email-input" formControlName="email" placeholder="Enter Email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addcontact-status-input" class="form-label">Status</label>
+                        <select class="form-select" formControlName="status">
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light w-sm" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary w-sm" data-bs-dismiss="modal" [disabled]="userForm.invalid">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Add Contact Modal -->
+
+<!-- Edit Contact Modal -->
+<div class="modal fade" id="addContactModalEdit" tabindex="-1" aria-labelledby="addContactModalEditLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addContactModalLabel">Edit Contact</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+                    <div class="mb-3">
+                        <label for="addcontact-name-input" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="addcontact-name-input" formControlName="name" placeholder="Enter Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addcontact-email-input" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="addcontact-email-input" formControlName="email" placeholder="Enter Email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addcontact-status-input" class="form-label">Status</label>
+                        <select class="form-select" formControlName="status">
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light w-sm" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary w-sm" data-bs-dismiss="modal" [disabled]="userForm.invalid">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Edit Contact Modal -->

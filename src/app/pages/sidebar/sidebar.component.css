@@ -1,0 +1,10 @@
+.vertical-menu .metismenu .active {
+    background-color: #f0f0f0; /* Highlight the active menu item */
+    color: #000; /* Adjust text color */
+    font-weight: bold; /* Optional: Make it bold */
+    border-radius: 4px; /* Optional: Add rounded corners */
+}
+
+.vertical-menu .metismenu .active i {
+    color: #007bff; /* Change icon color for active state */
+}
